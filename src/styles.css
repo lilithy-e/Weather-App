@@ -1,0 +1,37 @@
+body {
+  font-family: "Mulish", sans-serif;
+}
+h1 {
+  font-size: 25px;
+}
+h2 {
+  font-size: 50px;
+}
+ul {
+  list-style-type: none;
+}
+
+.current-location {
+  text-align: right;
+  text-transform: capitalize;
+}
+
+.fiveday-forecast {
+  margin-left: 40px;
+}
+.weekforecast {
+  font-size: 16px;
+  text-align: center;
+}
+
+.weather-app {
+  border: 1px solid #dadde1;
+  padding: 15px;
+  margin: 20px;
+  border-radius: 5px;
+  max-width: 600px;
+}
+
+.description {
+  text-transform: capitalize;
+}
