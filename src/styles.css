@@ -35,3 +35,7 @@ ul {
 .description {
   text-transform: capitalize;
 }
+
+.github-link {
+  text-align: center;
+}
