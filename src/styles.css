@@ -29,7 +29,9 @@ ul {
   padding: 15px;
   margin: 20px;
   border-radius: 5px;
-  max-width: 600px;
+  max-width: 630px;
+  display: block;
+  margin: 0 auto;
 }
 
 .description {
@@ -38,4 +40,5 @@ ul {
 
 .github-link {
   text-align: center;
+  font-size: small;
 }
