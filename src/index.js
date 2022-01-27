@@ -27,6 +27,21 @@ function formatDate(date) {
   return `${today}, ${hour}:${minutes}`;
 }
 
+function convertToFahr(event){
+  event.preventDefault();
+  let todayTemp = document.querySelector("#today-temp");
+  let toFahr = (celsiusTemp * 9/5) + 32;
+  todayTemp.innerHTML = Math.round(toFahr);
+}
+
+function convertToCelsius(event){
+  event.preventDefault();
+  let todayTemp = document.querySelector("#today-temp");
+  unitInFahr.classList.add("active");
+  unitInCelsius.classList.remove("active");
+  todayTemp.innerHTML= Math.round(celsiusTemp);
+}
+
 // wHEN SEARCHING FOR CITY, IT DISPLAYS THE CITY NAME
 
 function handleSubmit(event) {
@@ -52,7 +67,7 @@ function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
-//this function will get the user's loocation
+//this function will get the user's location
 function showPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -67,8 +82,12 @@ function showPosition(position) {
 function showTemperature(response) {
   console.log(response.data.name);
   document.querySelector("#current-location").innerHTML = response.data.name;
+
+  celsiusTemp = response.data.main.temp;
+  fahrenheitTemp = (celsiusTemp-32)*(5/9);
+
   document.querySelector("#today-temp").innerHTML = Math.round(
-    response.data.main.temp
+    celsiusTemp
   );
   document.querySelector("#feels-like").innerHTML = Math.round(
     response.data.main.feels_like
@@ -111,6 +130,9 @@ function getUserLocation(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
+let celsiusTemp = null;
+let fahrenheitTemp = null;
+
 let form = document.querySelector("#search-city");
 form.addEventListener("submit", handleSubmit);
 
@@ -121,4 +143,13 @@ dayTime.innerHTML = formatDate(date);
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", getUserLocation);
 //navigator.geolocation.getCurrentPosition(showPosition);
+
+//Unit conversion from C to F and vice versa
+let unitInFahr = document.querySelector(".fahrenheit");
+unitInFahr.addEventListener("click", convertToFahr);
+
+let unitInCelsius = document.querySelector(".celsius");
+unitInCelsius.addEventListener("click", convertToCelsius);
+
+//Default City upon load
 search("Ottawa");
