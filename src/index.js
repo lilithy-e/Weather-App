@@ -80,7 +80,8 @@ function showPosition(position) {
 
 //this is called by the function showPosition and updates weather info based on user's location
 function showTemperature(response) {
-  console.log(response.data.name);
+  
+  console.log(icon);
   document.querySelector("#current-location").innerHTML = response.data.name;
 
   celsiusTemp = response.data.main.temp;
@@ -101,6 +102,10 @@ function showTemperature(response) {
   document.querySelector(".description").innerHTML =
     response.data.weather[0].description;
 
+  let icon = response.data.weather[0].icon;
+  let iconSrc = document.querySelector("#icon");
+  iconSrc.setAttribute("src",`http://openweathermap.org/img/wn/${icon}@2x.png`);
+  
   //let city = response.data.name;
   /* let temp = Math.round(response.data.main.temp);
   let humidity = Math.round(response.data.main.humidity);
