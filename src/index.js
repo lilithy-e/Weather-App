@@ -1,6 +1,3 @@
-/* Desperately need help with this :(
-  and for some reason my app format is ruined..I did not even change the CSS file at all
-  also sent a question in Slack week 5 chat, waiting for reply */
 // UPDATING THE DAY/TIME IN THE TOP RIGHT CORNER
 function formatDate(date) {
   let hour = date.getHours();
@@ -48,7 +45,6 @@ function handleSubmit(event) {
   event.preventDefault();
   /* let searchCityInput = document.querySelector("#search-city-input");
   let currentCity = document.querySelector("#current-location");
-
   if (searchCityInput.value) {
     currentCity.innerHTML = searchCityInput.value.trim();
   } else {
@@ -57,7 +53,6 @@ function handleSubmit(event) {
   let city = document.querySelector("#search-city-input").value;
   /*let apiKey = "96ea5c1786f685219a008c5ac3a5e1e7";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(showTemperature);*/
   search(city);
 }
@@ -81,7 +76,6 @@ function showPosition(position) {
 //this is called by the function showPosition and updates weather info based on user's location
 function showTemperature(response) {
   
-  console.log(icon);
   document.querySelector("#current-location").innerHTML = response.data.name;
 
   celsiusTemp = response.data.main.temp;
@@ -112,20 +106,15 @@ function showTemperature(response) {
   let wind = Math.round(response.data.wind.speed);
   let description = response.data.weather[0].description;
   let feelsLike = Math.round(response.data.main.feels_like);
-
   let h2 = document.querySelector("#today-temp");
   h2.innerHTML = temp;
-
   let li_wind = document.querySelector("#wind");
   li_wind.innerHTML = wind;
-
   let li_humidity = document.querySelector("#humidity");
   li_humidity.innerHTML = humidity;
-
   //Changing the weather description
   let li_description = document.querySelector(".description");
   li_description.innerHTML = description;
-
   let li_feelsLike = document.querySelector("#feels-like");
   li_feelsLike.innerHTML = feelsLike; */
 }
