@@ -21,11 +21,16 @@ ul {
   text-transform: capitalize;
 }
 
-.fiveday-forecast {
-  margin-left: 40px;
+.sixday-forecast {
+  margin: 20px;
+  text-align: center;
 }
-.weekforecast {
-  font-size: 16px;
+
+.forecast-day {
+  font-size: 15px;
+  text-align: center;
+}
+.forecast-icon{
   text-align: center;
 }
 
