@@ -64,6 +64,14 @@ function showPosition(position) {
   axios.get(apiUrl).then(showTemperature);
 }
 
+function formatForecastDay(timeStamp){
+  let date = new Date(timeStamp*1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue","Wed","Thu","Fri","Sat"];
+  
+  return days[day];
+}
+
 function getForecast(coordinates){
   let apiKey = "96ea5c1786f685219a008c5ac3a5e1e7";
   let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
@@ -72,24 +80,26 @@ function getForecast(coordinates){
 }
 
 function displayForecast(response){
-  console.log(response.data.daily);
+  
+  let forecast = response.data.daily;
+  console.log(forecast);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  
-  let days = ["Mon","Tue","Wed","Thurs","Fri", "Sat"];
-  
-  days.forEach(function(day) {
-    forecastHTML = forecastHTML +`  
+    
+  forecast.forEach(function(forecastDay, index) {
+    if (index<6){
+    forecastHTML +=`  
     <div class="col-2">
-        <div class="forecast-day">${day}</div>
+        <div class="forecast-day">${formatForecastDay(forecastDay.dt)}</div>
         <div class="forecast-icon">
-        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="50"></img>
+        <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="50"></img>
         </div> 
-        <div class="forecast-temp">21.4°C</div>
+        <div class="forecast-temp">${Math.round(forecastDay.temp.max)} °C</div>
     </div>
-    `
+    `}
   });
-  forecastHTML = forecastHTML + `</div>`;
+
+  forecastHTML += `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
   
@@ -121,25 +131,6 @@ function showTemperature(response) {
   let icon = response.data.weather[0].icon;
   let iconSrc = document.querySelector("#icon");
   iconSrc.setAttribute("src",`http://openweathermap.org/img/wn/${icon}@2x.png`);
-  
-  
-  //let city = response.data.name;
-  /* let temp = Math.round(response.data.main.temp);
-  let humidity = Math.round(response.data.main.humidity);
-  let wind = Math.round(response.data.wind.speed);
-  let description = response.data.weather[0].description;
-  let feelsLike = Math.round(response.data.main.feels_like);
-  let h2 = document.querySelector("#today-temp");
-  h2.innerHTML = temp;
-  let li_wind = document.querySelector("#wind");
-  li_wind.innerHTML = wind;
-  let li_humidity = document.querySelector("#humidity");
-  li_humidity.innerHTML = humidity;
-  //Changing the weather description
-  let li_description = document.querySelector(".description");
-  li_description.innerHTML = description;
-  let li_feelsLike = document.querySelector("#feels-like");
-  li_feelsLike.innerHTML = feelsLike; */
 }
 
 function getUserLocation(event) {
