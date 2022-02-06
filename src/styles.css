@@ -3,6 +3,7 @@ body {
 }
 h1 {
   font-size: 25px;
+  font-weight:bolder;
   margin-bottom: 0;
 }
 h2 {
@@ -20,7 +21,18 @@ ul {
   text-align: right;
   text-transform: capitalize;
 }
-
+#current-location{
+  font-size: larger;
+  font-weight: bold;
+}
+.active {
+  color:black;
+  cursor: default;
+}
+.active:hover{
+  text-decoration: none;
+  color:black;
+}
 .sixday-forecast {
   margin: 20px;
   text-align: center;

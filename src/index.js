@@ -28,14 +28,16 @@ function convertToFahr(event){
   event.preventDefault();
   let todayTemp = document.querySelector("#today-temp");
   let toFahr = (celsiusTemp * 9/5) + 32;
+  unitInCelsius.classList.remove("active");
+  unitInFahr.classList.add("active");
   todayTemp.innerHTML = Math.round(toFahr);
 }
 
 function convertToCelsius(event){
   event.preventDefault();
   let todayTemp = document.querySelector("#today-temp");
-  unitInFahr.classList.add("active");
-  unitInCelsius.classList.remove("active");
+  unitInCelsius.classList.add("active");
+  unitInFahr.classList.remove("active");
   todayTemp.innerHTML= Math.round(celsiusTemp);
 }
 
