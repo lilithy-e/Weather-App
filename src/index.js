@@ -108,8 +108,8 @@ function displayForecast(response){
 //this is called by the function showPosition and updates weather info based on user's location
 function showTemperature(response) {
   getForecast(response.data.coord);
- // displayForecast(response);
-  
+  unitInCelsius.classList.add("active");
+  unitInFahr.classList.remove("active");
   document.querySelector("#current-location").innerHTML = response.data.name;
 
   celsiusTemp = response.data.main.temp;
